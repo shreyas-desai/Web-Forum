@@ -68,7 +68,6 @@ def create_post():
                             (key, timestamp, data['msg'], parent_post_id))
             post_id = cursor.lastrowid
 
-
         post = {
             "id": post_id,
             "key": key,
@@ -270,6 +269,7 @@ def delete_post(post_id, key):
         if not post_data:
             conn.close()
             return jsonify({"error": "Post not found"}), 404
+        user_key = None
         if post_data[4]!=None:
             cursor.execute("SELECT key FROM users where id = ?",(post_data[4],))
             user_key = cursor.fetchone()[0]
@@ -278,7 +278,7 @@ def delete_post(post_id, key):
         if post_data[1] != key and key!=user_key:
             conn.close()
             return jsonify({"error": "Forbidden. Incorrect key"}), 403
-        deleted_with = ["Deleted with user key." if key==user_key else "Deleted with post key." ]
+        deleted_with = ["Deleted with user key." if user_key != None and key==user_key else "Deleted with post key." ]
         with lock:
             cursor.execute('DELETE FROM posts WHERE id = ?', (post_id,))
         post={
