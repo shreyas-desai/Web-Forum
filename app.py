@@ -58,9 +58,12 @@ def create_post():
     try:
         conn = sqlite3.connect('web_forum.db', check_same_thread=False)
         cursor = conn.cursor()
+        if not request.get_data():
+            conn.close()
+            return jsonify({"error": "Bad request. Missing or invalid 'msg' field."}), 400
+        
         data = request.get_json()
-
-        if not isinstance(data, dict) or 'msg' not in data or not isinstance(data['msg'], str):
+        if not isinstance(data, dict) or 'msg' not in data or not isinstance(data['msg'], str) or data is None:
             conn.close()
             return jsonify({"error": "Bad request. Missing or invalid 'msg' field."}), 400
 
@@ -101,8 +104,7 @@ def create_post():
 
     except Exception as e:
         print(e)
-        if not conn.closed:
-            conn.close()
+        conn.close()
         return jsonify({"error": "Internal server error"}), 500
 
 
@@ -111,6 +113,9 @@ def create_post_with_user(user_id):
     try:
         conn = sqlite3.connect('web_forum.db', check_same_thread=False)
         cursor = conn.cursor()
+        if not request.get_data():
+            conn.close()
+            return jsonify({"error": "Bad request. Missing or invalid 'msg' field."}), 400
         data = request.get_json()
 
         cursor.execute(f"SELECT * FROM users WHERE id = {user_id}")
@@ -168,6 +173,9 @@ def get_post(post_id):
         conn = sqlite3.connect('web_forum.db', check_same_thread=False)
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM posts WHERE id = ?', (post_id,))
+        if not request.get_data():
+            conn.close()
+            return jsonify({"error": "Bad request. Missing or invalid 'msg' field."}), 400
         post_data = cursor.fetchone()
         if not post_data:
             conn.close()
@@ -211,7 +219,9 @@ def get_post(post_id):
 def get_post_with_user():
     try:
         user = request.args.get('user')
-
+        if not request.get_data():
+            conn.close()
+            return jsonify({"error": "Bad request. Missing or invalid 'msg' field."}), 400
         try:
             user = int(user)
         except ValueError:
@@ -304,13 +314,16 @@ def get_post_by_date():
             if startDate is not None:
                 startDate = getDateFromString(startDate)
                 start_date_str = startDate.strftime('%Y-%m-%d %H:%M:%S')
-
+                print(start_date_str)
+                
             if endDate is not None:
                 endDate = getDateFromString(endDate)
                 end_date_str = endDate.strftime('%Y-%m-%d %H:%M:%S')
-
-            if (endDate < startDate):
-                return jsonify({"error": "Bad request. 'endDate' should be greater than 'startDate'"}), 400
+                print(end_date_str)
+            
+            if startDate and endDate:
+                if (endDate < startDate):
+                    return jsonify({"error": "Bad request. 'endDate' should be greater than 'startDate'"}), 400
 
             # end_datetime = datetime.strptime(endDate, '%Y-%m-%dT%H:%M:%S.%f')
 
