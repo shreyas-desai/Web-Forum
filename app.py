@@ -173,9 +173,6 @@ def get_post(post_id):
         conn = sqlite3.connect('web_forum.db', check_same_thread=False)
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM posts WHERE id = ?', (post_id,))
-        if not request.get_data():
-            conn.close()
-            return jsonify({"error": "Bad request. Missing or invalid 'msg' field."}), 400
         post_data = cursor.fetchone()
         if not post_data:
             conn.close()
@@ -219,9 +216,6 @@ def get_post(post_id):
 def get_post_with_user():
     try:
         user = request.args.get('user')
-        if not request.get_data():
-            conn.close()
-            return jsonify({"error": "Bad request. Missing or invalid 'msg' field."}), 400
         try:
             user = int(user)
         except ValueError:
@@ -436,6 +430,9 @@ def create_user():
     try:
         conn = sqlite3.connect('web_forum.db', check_same_thread=False)
         cursor = conn.cursor()
+        if not request.get_data():
+            conn.close()
+            return jsonify({"error": "Bad request. Missing or invalid 'msg' field."}), 400
         data = request.get_json()
         if not isinstance(data, dict) or 'uname' not in data or not isinstance(data['uname'], str):
             conn.close()
