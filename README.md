@@ -5,3 +5,4 @@ Curernt extensions
 3. Threaded Replies
 4. User-based range queries
 5. Persistence
+6. Date and Time based queries
