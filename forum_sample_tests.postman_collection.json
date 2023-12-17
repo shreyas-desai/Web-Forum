@@ -172,7 +172,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"msg\":\"hello\"}",
+					"raw": "{\"msg\":\"hello again\",\"parent_post\":2}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -204,7 +204,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"uname\":\"shreyas\",\r\n    \"fname\":\"sahil\",\r\n    \"lname\":\"salunkhe\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -238,7 +238,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"msg\":\"hey\"}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -267,7 +267,22 @@
 			"name": "get user with id",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/user/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
@@ -275,7 +290,22 @@
 			"name": "get user with uname",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/user/shreyas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"shreyas"
+					]
+				}
 			},
 			"response": []
 		},
@@ -283,7 +313,27 @@
 			"name": "get posts for user",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/post?user=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"post"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "1"
+						}
+					]
+				}
 			},
 			"response": []
 		},
