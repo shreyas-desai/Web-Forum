@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "51572930-2c1e-4393-afe5-0fe6ca756da6",
+		"_postman_id": "6db55697-8f45-4044-a93d-a90d73d31db0",
 		"name": "forum: sample tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31839318"
+		"_exporter_id": "18544047"
 	},
 	"item": [
 		{
@@ -387,6 +387,8 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
 							"\r",
 							"pm.environment.set(\"id\", jsonData.id);\r",
 							"pm.environment.set(\"timestamp\", jsonData.timestamp);\r",
