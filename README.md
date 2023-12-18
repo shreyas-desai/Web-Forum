@@ -31,4 +31,4 @@ Each of us spent around 5-6 hours to implement this project
 
 4. User-based range queries.
 
-5. Date and Time based queries.
+5. Date and Time based queries
