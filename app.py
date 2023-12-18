@@ -307,13 +307,15 @@ def get_post_by_date():
         try:
             if startDate is not None:
                 startDate = getDateFromString(startDate)
+                print("startDate",startDate)
                 start_date_str = startDate.strftime('%Y-%m-%d %H:%M:%S')
-                print(start_date_str)
+                print("start_date_str",start_date_str)
                 
             if endDate is not None:
                 endDate = getDateFromString(endDate)
+                print("endDate",endDate)
                 end_date_str = endDate.strftime('%Y-%m-%d %H:%M:%S')
-                print(end_date_str)
+                print("end_date_str",end_date_str)
             
             if startDate and endDate:
                 if (endDate < startDate):
@@ -334,14 +336,14 @@ def get_post_by_date():
                 'SELECT * FROM posts WHERE timestamp BETWEEN ? AND ?', (start_date_str, end_date_str,))
         elif startDate is not None:
             cursor.execute(
-                'SELECT * FROM posts WHERE timestamp >= ?', (start_date_str,))
+                'SELECT * FROM posts WHERE timestamp > ?', (start_date_str,))
         elif endDate is not None:
             cursor.execute(
                 'SELECT * FROM posts WHERE timestamp <= ?', (end_date_str,))
         else:
             conn.close()
             return jsonify({"error": "Bad request. Missing 'startDate' or 'endDate' field."}), 400
-
+        print(cursor)
         post_data = cursor.fetchall()
         if not post_data:
             conn.close()

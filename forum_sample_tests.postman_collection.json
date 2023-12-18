@@ -919,6 +919,60 @@
 			"response": []
 		},
 		{
+			"name": "get post with invalid user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/post?user=invalid-user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"post"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "invalid-user"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "delete post with user key",
 			"event": [
 				{
@@ -1013,6 +1067,29 @@
 			"response": []
 		},
 		{
+			"name": "get user with invalid uname",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/user/{{uname}}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"{{uname}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get posts for user",
 			"request": {
 				"method": "GET",
@@ -1041,7 +1118,7 @@
 			"response": []
 		},
 		{
-			"name": "get posts based on date",
+			"name": "get posts based on start date",
 			"event": [
 				{
 					"listen": "test",
@@ -1076,6 +1153,90 @@
 						{
 							"key": "startDate",
 							"value": "2023-12-17T23:01:22.478577+00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get posts based on end date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/postsByDate?startDate=2023-12-17T23:01:22.478577+00:00",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"postsByDate"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2023-12-17T23:01:22.478577+00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get posts based on start date and end date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/postsByDate?startDate={{startdate}}?enddate={{enddate}}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"postsByDate"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "{{startdate}}?enddate={{enddate}}"
 						}
 					]
 				}
