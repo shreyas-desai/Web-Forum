@@ -539,5 +539,3 @@ def get_user_with_uname(uname):
         return jsonify({"error": "Internal server error"}), 500
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
