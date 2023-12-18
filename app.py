@@ -240,7 +240,7 @@ def get_post_with_user():
             user_id = cursor.fetchone()
             if not user_id:
                 conn.close()
-                return jsonify({"error": f"Posts not found for user name'{user}'"}), 404
+                return jsonify({"error": f"Posts not found for user name '{user}'"}), 404
             user_id = user_id[0]
             cursor.execute('SELECT * FROM posts WHERE user_id = ?', (user_id,))
             post_data = cursor.fetchall()
