@@ -19,7 +19,9 @@ The codebase is structured as a Flask application and utilizes SQLite as the dat
 
 ## Testing Methodology:
 
-We conducted thorough testing to ensure the reliability and functionality of our code. Our testing approach included unit testing with postman API, we tested all the endpoints with edge cases to ensure effective working of the code. We have used forum_sample_tests.postman_collection.json to test in postman.
+We conducted thorough testing to ensure the reliability and functionality of our code. Our testing approach included unit testing with postman API, we tested all the endpoints with edge cases to ensure effective working of the code. </br>
+We have used forum_sample_tests.postman_collection.json to test in postman.
+</br> The usage of the endpoints is described in the postman collection
 
 ## Bugs and Issues:
 
