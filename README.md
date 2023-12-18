@@ -57,6 +57,62 @@ To tackle this issue, we revisited our database queries and found an oversight i
    - Users can perform queries based on specific dates and times, enhancing content search capabilities.
 
 ## Usage Instructions:
+#   start point
+    http://127.0.0.1:5000 
+    
+#   Endpoint
+    /post
+
+#   start point
+    http://127.0.0.1:5000 
+
+#   Endpoint
+    /post/{{id}}
+
+#   start point
+    http://127.0.0.1:5000 
+
+#   Endpoint
+    /post/{{id}}/delete/{{key}}
+#   start point
+    http://127.0.0.1:5000 
+
+#   Endpoint
+    /post/{{childid}}
+
+#   start point
+    http://127.0.0.1:5000 
+
+#   Endpoint
+    /user
+
+#   start point
+    http://127.0.0.1:5000 
+
+#   Endpoint
+    /post/{{userid}}
+
+#   start point
+    http://127.0.0.1:5000 
+
+#   Endpoint
+    /post/{{id}}/delete/{{userkey}}
+
+#   start point
+    http://127.0.0.1:5000 
+    
+#   Endpoint
+    /user/{{uname}}
+#   start point
+    http://127.0.0.1:5000 
+
+#   Endpoint
+    /postsByDate?startDate={{startdate}}
+#   start point
+    http://127.0.0.1:5000 
+
+#   Endpoint
+    /postsByDate?endDate={{enddate}}
 
 1. **Post Creation:**
 
