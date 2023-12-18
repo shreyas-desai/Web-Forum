@@ -531,9 +531,43 @@
 		},
 		{
 			"name": "get posts based on date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/postsByDate?startDate=2023-12-17T23:01:22.478577+00:00",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"postsByDate"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2023-12-17T23:01:22.478577+00:00"
+						}
+					]
+				}
 			},
 			"response": []
 		}
