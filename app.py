@@ -463,7 +463,8 @@ def create_user():
             "uname": data['uname'],
             "fname": data['fname'],
             "lname": data['lname'],
-            "time_created": time_created
+            "time_created": time_created,
+            "user_key":key
         }
         row = cursor.execute('SELECT * from users')
         for i in row.fetchall():
