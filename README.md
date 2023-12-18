@@ -12,6 +12,15 @@ Github URL: https://github.com/shreyas-desai/Web-Forum
 
 Each of us spent around 5-6 hours to implement this project
 
+# A description of how you tested your code.
+
+
+# Any bugs or issues you could not resolve.
+
+
+# An example of a difficult issue or bug and how you resolved.
+
+
 # Curernt extensions
 
 1. User and user keys.
